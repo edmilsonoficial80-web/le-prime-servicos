@@ -1,0 +1,5 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Star } from 'lucide-react';
+import { Avatar } from '@/components/ui/Avatar';
+import { cn, timeAgo } from '@/utils';
+export const ReviewItem = ({ review }) => (_jsxs("article", { className: "rounded-2xl border border-ink-100 bg-white p-4", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx(Avatar, { name: review.clientName, src: review.clientPhoto, size: 38 }), _jsxs("div", { className: "min-w-0 flex-1", children: [_jsx("p", { className: "truncate text-sm font-bold", children: review.clientName }), _jsx("p", { className: "truncate text-[11px] text-ink-400", children: review.requestTitle })] }), _jsx("span", { className: "text-[11px] text-ink-300", children: timeAgo(review.createdAt) })] }), _jsx("div", { className: "mt-2.5 flex gap-0.5", children: [1, 2, 3, 4, 5].map((star) => (_jsx(Star, { size: 14, className: cn(star <= review.rating ? 'fill-brand-yellow text-brand-yellow' : 'fill-ink-100 text-ink-200') }, star))) }), review.comment && _jsx("p", { className: "mt-2 text-[13px] leading-relaxed text-ink-600", children: review.comment })] }));

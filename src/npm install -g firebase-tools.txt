@@ -1,0 +1,15 @@
+npm install -g firebase-tools
+
+
+1- const firebaseConfig = {
+  apiKey: "AIzaSyC-L3EjFH7hwylJlNOcoZTEB2AzVkMgGY0",
+  authDomain: "le-prime-servicos.firebaseapp.com",
+  projectId: "le-prime-servicos",
+  storageBucket: "le-prime-servicos.firebasestorage.app",
+  messagingSenderId: "194872192137",
+  appId: "1:194872192137:web:1b5d44589e1b255c31ea58"
+};
+
+
+
+2-

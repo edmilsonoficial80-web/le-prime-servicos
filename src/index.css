@@ -1,0 +1,439 @@
+/* =========================
+   L&E PRIME - DESIGN SYSTEM
+   ========================= */
+
+
+:root {
+
+  --azul-profundo: #061B41;
+
+  --azul: #082654;
+
+  --verde: #B8F000;
+
+  --branco: #FFFFFF;
+
+  --off-white: #F5F7F2;
+
+  --grafite: #17202A;
+
+}
+
+
+
+
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+
+
+
+
+body {
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family:
+
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+
+    var(--off-white);
+
+  color:
+
+    var(--grafite);
+
+}
+
+
+
+
+
+h1,
+h2,
+h3 {
+
+  color:
+
+    var(--azul-profundo);
+
+}
+
+
+
+
+
+button {
+
+  background:
+
+    var(--verde);
+
+  color:
+
+    var(--azul-profundo);
+
+  border:
+
+    none;
+
+  padding:
+
+    12px 22px;
+
+  border-radius:
+
+    8px;
+
+  font-size:
+
+    16px;
+
+  font-weight:
+
+    bold;
+
+  cursor:
+
+    pointer;
+
+  transition:
+
+    0.3s;
+
+
+}
+
+
+
+
+
+button:hover {
+
+  transform:
+
+    translateY(-2px);
+
+  opacity:
+
+    0.9;
+
+}
+
+
+
+
+
+input,
+textarea,
+select {
+
+  width:
+
+    300px;
+
+  max-width:
+
+    100%;
+
+  padding:
+
+    12px;
+
+  border:
+
+    1px solid #ddd;
+
+  border-radius:
+
+    8px;
+
+  font-size:
+
+    15px;
+
+}
+
+
+
+
+
+textarea {
+
+  resize:
+
+    vertical;
+
+}
+
+
+
+
+
+.card {
+
+  background:
+
+    var(--branco);
+
+  border-radius:
+
+    14px;
+
+  padding:
+
+    25px;
+
+  box-shadow:
+
+    0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+
+
+.container {
+
+  width:
+
+    90%;
+
+  max-width:
+
+    1200px;
+
+  margin:
+
+    auto;
+
+}
+
+
+
+
+
+/* HEADER */
+
+.header {
+
+  background:
+
+    var(--azul-profundo);
+
+  color:
+
+    var(--branco);
+
+  padding:
+
+    15px 30px;
+
+}
+
+
+
+
+
+.header h1 {
+
+  color:
+
+    var(--branco);
+
+}
+
+
+
+
+
+.logo {
+
+  height:
+
+    55px;
+
+}
+
+
+
+
+
+/* LINKS */
+
+a {
+
+  text-decoration:
+
+    none;
+
+  color:
+
+    var(--azul-profundo);
+
+}
+
+
+
+
+
+/* SERVIÇOS */
+
+.servico-card {
+
+  background:
+
+    var(--branco);
+
+  border:
+
+    1px solid #ddd;
+
+  border-radius:
+
+    12px;
+
+  padding:
+
+    20px;
+
+  margin:
+
+    12px 0;
+
+  text-align:
+
+    center;
+
+  font-size:
+
+    18px;
+
+  cursor:
+
+    pointer;
+
+}
+
+
+
+
+
+.servico-card:hover {
+
+  border-color:
+
+    var(--verde);
+
+  transform:
+
+    scale(1.02);
+
+}
+
+
+
+
+
+/* BOTÃO SECUNDÁRIO */
+
+.btn-secundario {
+
+  background:
+
+    var(--azul-profundo);
+
+  color:
+
+    var(--branco);
+
+}
+
+
+
+
+
+/* WHATSAPP */
+
+.btn-whatsapp {
+
+  background:
+
+    var(--verde);
+
+}
+
+
+
+
+
+/* TITULOS */
+
+.titulo-principal {
+
+  font-size:
+
+    42px;
+
+  font-weight:
+
+    800;
+
+}
+
+
+
+
+
+.subtitulo {
+
+  font-size:
+
+    20px;
+
+  color:
+
+    #555;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+
+  .titulo-principal {
+
+    font-size:
+
+      32px;
+
+  }
+
+
+
+  .card {
+
+    padding:
+
+      18px;
+
+  }
+
+
+}

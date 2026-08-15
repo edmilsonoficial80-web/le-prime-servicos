@@ -1,0 +1,73 @@
+type Props = {
+  profissional: any;
+};
+
+
+function PerfilProfissional({
+  profissional,
+}: Props) {
+
+
+  if (!profissional) {
+    return null;
+  }
+
+
+  return (
+
+    <div
+      style={{
+        background:"white",
+        padding:"25px",
+        borderRadius:"15px",
+        marginTop:"20px",
+        boxShadow:
+          "0 3px 12px rgba(0,0,0,0.08)",
+      }}
+    >
+
+      <h2 style={{color:"#061B41"}}>
+        {profissional.nome}
+      </h2>
+
+
+      <p>
+        <strong>Especialidade:</strong>{" "}
+        {profissional.especialidade}
+      </p>
+
+
+      <p>
+        <strong>Zona de atendimento:</strong>{" "}
+        {profissional.zona}
+      </p>
+
+
+      <p>
+        <strong>Sobre:</strong>
+      </p>
+
+      <p>
+        {profissional.descricao}
+      </p>
+
+
+      <p>
+        <strong>Avaliação:</strong>{" "}
+        ⭐ 5.0
+      </p>
+
+
+      <p>
+        <strong>Serviços realizados:</strong>{" "}
+        0
+      </p>
+
+
+    </div>
+
+  );
+}
+
+
+export default PerfilProfissional;
