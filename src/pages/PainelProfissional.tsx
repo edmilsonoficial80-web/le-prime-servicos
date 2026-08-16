@@ -809,34 +809,9 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
 
 
                 <p>
-                  <strong>
-                    Valor:
-                  </strong>{" "}
-                  {
-                    pedido.valor
-                  }
-                </p>
-
-
-                <div
-                  style={{
-                    background:
-                      "#f5f5f5",
-                    padding:
-                      "12px",
-                    borderRadius:
-                      "8px",
-                    marginTop:
-                      "15px",
-                    marginBottom:
-                      "15px",
-                  }}
-                >
-                  🔒 Os contactos do
-                  cliente ficam
-                  protegidos até o
-                  serviço ser aceite.
-                </div>
+  <strong>Valor:</strong>{" "}
+  {pedido.valor}
+</p>
 
 
 <input
@@ -858,6 +833,28 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
     fontSize: "15px",
   }}
 />
+
+
+                <div
+  style={{
+    background:"#f5f5f5",
+                    padding:
+                      "12px",
+                    borderRadius:
+                      "8px",
+                    marginTop:
+                      "15px",
+                    marginBottom:
+                      "15px",
+                  }}
+                >
+                  🔒 Os contactos do
+                  cliente ficam
+                  protegidos até o
+                  serviço ser aceite.
+                </div>
+
+
 
 <button
   type="button"
