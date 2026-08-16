@@ -813,10 +813,13 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
   {pedido.valor}
 </p>
 
+<p style={{color:"red"}}>
+TESTE CAMPO PROPOSTA
+</p>
 
 <input
   type="number"
-  placeholder="Digite o valor da proposta (€)"
+  placeholder="Digite o valor da proposta em euros"
   value={valoresProposta[pedido.id] || ""}
   onChange={(e) =>
     setValoresProposta({
