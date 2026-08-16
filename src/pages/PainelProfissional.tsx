@@ -6,9 +6,11 @@ function PainelProfissional() {
     localStorage.getItem("usuarioLogado") || "{}"
   );
 
-  const [pedidos, setPedidos] = useState<any[]>(
-    buscarPedidos()
-  );
+const [pedidos, setPedidos] = useState<any[]>(
+  buscarPedidos()
+);
+
+const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({});
 
   const [mostrarPerfil, setMostrarPerfil] =
     useState(false);
@@ -837,33 +839,69 @@ function PainelProfissional() {
                 </div>
 
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    atualizarPedido(
-                      pedido.id,
-                      "Em andamento"
-                    )
-                  }
-                  style={{
-                    background:
-                      "#061B41",
-                    color:
-                      "white",
-                    border:
-                      "none",
-                    padding:
-                      "12px 18px",
-                    borderRadius:
-                      "8px",
-                    cursor:
-                      "pointer",
-                    fontWeight:
-                      "bold",
-                  }}
-                >
-                  Aceitar serviço
-                </button>
+<input
+  type="number"
+  placeholder="Digite o valor da proposta (€)"
+  value={valoresProposta[pedido.id] || ""}
+  onChange={(e) =>
+    setValoresProposta({
+      ...valoresProposta,
+      [pedido.id]: e.target.value,
+    })
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "12px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    fontSize: "15px",
+  }}
+/>
+
+<button
+  type="button"
+  onClick={() => {
+    const valor = valoresProposta[pedido.id];
+
+    if (!valor) {
+      alert("Digite o valor da proposta");
+      return;
+    }
+
+    const pedidosAtualizados = pedidos.map((p: any) =>
+      p.id === pedido.id
+        ? {
+            ...p,
+            valor: `${valor} €`,
+            status: "Em andamento",
+            profissional:
+              usuarioAtual.nome || "Profissional",
+            profissionalId:
+              usuarioAtual.id,
+          }
+        : p
+    );
+
+    localStorage.setItem(
+      "pedidos",
+      JSON.stringify(pedidosAtualizados)
+    );
+
+    setPedidos(pedidosAtualizados);
+  }}
+  style={{
+    background: "#061B41",
+    color: "white",
+    border: "none",
+    padding: "12px 18px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Enviar proposta
+</button>
 
               </div>
             )
