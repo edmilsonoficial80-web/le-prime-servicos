@@ -392,7 +392,7 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
           >
             LE Prime Serviços
           </h1>
-
+               <h2>TESTE NOVA VERSÃO PAINEL  PROFISSIONAL</h2>
           <p>
             Painel do Profissional
           </p>
