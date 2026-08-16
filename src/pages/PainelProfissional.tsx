@@ -336,8 +336,7 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
   const meusServicos =
     pedidos.filter(
       (pedido: any) =>
-        pedido.profissionalId ===
-          usuarioAtual.id &&
+        String(pedido.profissionalId) ===                         String(usuarioAtual.id) &&
         pedido.status !==
           "Concluído"
     );
@@ -814,7 +813,7 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
 </p>
 
 <p style={{color:"red"}}>
-TESTE CAMPO PROPOSTA
+TESTE CAMPO PROPOSTA APARECEU
 </p>
 
 <input
@@ -878,7 +877,7 @@ TESTE CAMPO PROPOSTA
             profissional:
               usuarioAtual.nome || "Profissional",
             profissionalId:
-              usuarioAtual.id,
+            String(usuarioAtual.id),
           }
         : p
     );
