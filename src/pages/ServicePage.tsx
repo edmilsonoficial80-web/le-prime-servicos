@@ -5,115 +5,179 @@ export default function ServicePage() {
 
   const servicos = [
     {
-      nome: "Eletricista",
-      icone: "🔧",
-      descricao: "Instalações e reparações elétricas residenciais e comerciais.",
+      nome: "Elétrica",
+      tipo: "eletricista",
+      icone: "⚡",
+      descricao: "Instalações e reparações elétricas.",
     },
     {
-      nome: "Canalizador",
+      nome: "Canalização",
+      tipo: "canalizador",
       icone: "🚰",
-      descricao: "Reparações hidráulicas, fugas e manutenção.",
+      descricao: "Reparações hidráulicas e canalização.",
     },
     {
-      nome: "Pintor",
+      nome: "Pintura",
+      tipo: "pintor",
       icone: "🎨",
       descricao: "Pintura residencial e comercial.",
     },
     {
       nome: "Limpeza",
+      tipo: "limpeza",
       icone: "🧹",
-      descricao: "Serviços de limpeza para casas e empresas.",
+      descricao: "Limpeza de casas e empresas.",
     },
     {
-      nome: "Jardinagem",
-      icone: "🌳",
-      descricao: "Manutenção e cuidados com jardins.",
+      nome: "Reparações",
+      tipo: "reparacoes",
+      icone: "🛠️",
+      descricao: "Reparações e manutenção geral.",
+    },
+    {
+      nome: "Outros",
+      tipo: "outros",
+      icone: "•••",
+      descricao: "Outros serviços profissionais.",
     },
   ];
 
-  function solicitarOrcamento(servico: string) {
-    localStorage.setItem("servico_selecionado", servico);
+  function selecionarServico(tipo: string) {
+    localStorage.setItem("servico_selecionado", tipo);
 
-    const cliente = localStorage.getItem("cliente_logado");
-
-    if (!cliente) {
-      navigate("/login");
-      return;
-    }
-
-    navigate("/pedido");
+    navigate(`/profissionais/${tipo}`);
   }
 
   return (
-    <div
+    <main
       style={{
         minHeight: "100vh",
-        background: "#F5F7F2",
-        padding: "30px 20px",
+        background: "#ffffff",
+        padding: "40px 20px 80px",
+        boxSizing: "border-box",
       }}
     >
-      <h1
-        style={{
-          textAlign: "center",
-          color: "#061B41",
-        }}
-      >
-        Serviços L&E Prime
-      </h1>
-
-      <p style={{ textAlign: "center" }}>
-        Escolha o serviço que precisa.
-      </p>
-
-      <div
+      <section
         style={{
           maxWidth: "1100px",
-          margin: "30px auto",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: "20px",
+          margin: "0 auto",
         }}
       >
-        {servicos.map((servico) => (
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "35px",
+          }}
+        >
           <div
-            key={servico.nome}
             style={{
-              background: "#fff",
-              padding: "25px",
-              borderRadius: "15px",
-              boxShadow: "0 3px 12px rgba(0,0,0,0.08)",
+              width: "40px",
+              height: "3px",
+              background: "#B8F000",
+              margin: "0 auto 12px",
+            }}
+          />
+
+          <h1
+            style={{
+              margin: 0,
+              color: "#061B41",
+              fontSize: "32px",
+              fontWeight: 800,
             }}
           >
-            <div style={{ fontSize: "35px" }}>
-              {servico.icone}
-            </div>
+            Serviços disponíveis
+          </h1>
 
-            <h2 style={{ color: "#061B41" }}>
-              {servico.nome}
-            </h2>
+          <p
+            style={{
+              marginTop: "10px",
+              color: "#6B7280",
+              fontSize: "16px",
+            }}
+          >
+            Encontre o serviço que precisa entre as várias categorias
+            disponíveis.
+          </p>
+        </div>
 
-            <p>{servico.descricao}</p>
-
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: "16px",
+          }}
+        >
+          {servicos.map((servico) => (
             <button
-              onClick={() =>
-                solicitarOrcamento(servico.nome)
-              }
+              key={servico.tipo}
+              type="button"
+              onClick={() => selecionarServico(servico.tipo)}
+              aria-label={`Selecionar serviço de ${servico.nome}`}
               style={{
-                background: "#B8F000",
-                color: "#061B41",
                 border: "none",
-                padding: "12px 18px",
-                borderRadius: "8px",
-                fontWeight: "bold",
+                background: "#ffffff",
+                borderRadius: "10px",
+                padding: "22px 12px",
+                minHeight: "130px",
                 cursor: "pointer",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.transform = "translateY(-3px)";
+                event.currentTarget.style.boxShadow =
+                  "0 5px 16px rgba(0,0,0,0.12)";
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.transform = "translateY(0)";
+                event.currentTarget.style.boxShadow =
+                  "0 2px 10px rgba(0,0,0,0.08)";
               }}
             >
-              Solicitar orçamento
+              <span
+                style={{
+                  fontSize: servico.tipo === "outros" ? "28px" : "30px",
+                  lineHeight: 1,
+                  marginBottom: "14px",
+                  color: "#B8F000",
+                  fontWeight: 700,
+                }}
+              >
+                {servico.icone}
+              </span>
+
+              <strong
+                style={{
+                  color: "#061B41",
+                  fontSize: "15px",
+                  fontWeight: 700,
+                  textAlign: "center",
+                }}
+              >
+                {servico.nome}
+              </strong>
+
+              <span
+                style={{
+                  marginTop: "7px",
+                  color: "#6B7280",
+                  fontSize: "12px",
+                  textAlign: "center",
+                  lineHeight: 1.3,
+                }}
+              >
+                {servico.descricao}
+              </span>
             </button>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

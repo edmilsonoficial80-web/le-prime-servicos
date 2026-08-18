@@ -1,4 +1,4 @@
-/* =========================
+﻿/* =========================
    L&E PRIME - DESIGN SYSTEM
    ========================= */
 
@@ -230,11 +230,11 @@ textarea {
 
   background:
 
-    var(--azul-profundo);
+    var(--branco);
 
   color:
 
-    var(--branco);
+    var(--azul-profundo);
 
   padding:
 
@@ -288,7 +288,7 @@ a {
 
 
 
-/* SERVIÇOS */
+/* SERVIÃ‡OS */
 
 .servico-card {
 
@@ -346,7 +346,7 @@ a {
 
 
 
-/* BOTÃO SECUNDÁRIO */
+/* BOTÃƒO SECUNDÃRIO */
 
 .btn-secundario {
 
@@ -437,3 +437,4 @@ a {
 
 
 }
+

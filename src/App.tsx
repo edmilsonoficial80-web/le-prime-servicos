@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -20,8 +19,11 @@ import PainelCliente from "./pages/PainelClienteTeste";
 import PainelProfissional from "./pages/PainelProfissional";
 
 import AcessoProfissional from "./pages/AcessoProfissional";
-
 import AdminPage from "./pages/AdminPage";
+
+import ComoFuncionaPage from "./pages/ComoFuncionaPage";
+import SobreNosPage from "./pages/SobreNosPage";
+import ContatoPage from "./pages/ContatoPage";
 
 export default function App() {
   return (
@@ -29,47 +31,25 @@ export default function App() {
       <Header />
 
       <Routes>
+        <Route path="/" element={<HomePage />} />
 
-        {/* Página inicial */}
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
+        <Route path="/servicos" element={<ServicePage />} />
 
-        {/* Serviços */}
-        <Route
-          path="/servicos"
-          element={<ServicePage />}
-        />
-
-        {/* Lista de profissionais */}
-        <Route
-          path="/profissionais"
-          element={<ProfissionaisPage />}
-        />
+        <Route path="/profissionais" element={<ProfissionaisPage />} />
 
         <Route
           path="/profissionais/:tipo"
           element={<ProfissionaisPage />}
         />
 
-        {/* Perfil profissional */}
         <Route
           path="/profissional/:id"
           element={<PerfilProfissional />}
         />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={<LoginPage />}
-        />
+        <Route path="/login" element={<LoginPage />} />
 
-        {/* Registro */}
-        <Route
-          path="/registro"
-          element={<Registro />}
-        />
+        <Route path="/registro" element={<Registro />} />
 
         <Route
           path="/registro/cliente"
@@ -81,24 +61,15 @@ export default function App() {
           element={<RegisterProfessionalPage />}
         />
 
-        {/* Pedido */}
-        <Route
-          path="/pedido"
-          element={<PedidoPage />}
-        />
+        <Route path="/pedido" element={<PedidoPage />} />
 
-        <Route
-          path="/novo-pedido"
-          element={<NovoPedido />}
-        />
+        <Route path="/novo-pedido" element={<NovoPedido />} />
 
-        {/* Painel do cliente */}
         <Route
           path="/painel-cliente"
           element={<PainelCliente />}
         />
 
-        {/* Painel profissional */}
         <Route
           path="/painel-profissional"
           element={<PainelProfissional />}
@@ -109,18 +80,27 @@ export default function App() {
           element={<PainelProfissional />}
         />
 
-        {/* Acesso profissional */}
         <Route
           path="/acesso-profissional"
           element={<AcessoProfissional />}
         />
 
-        {/* Administração */}
+        <Route path="/admin" element={<AdminPage />} />
+
         <Route
-          path="/admin"
-          element={<AdminPage />}
+          path="/como-funciona"
+          element={<ComoFuncionaPage />}
         />
 
+        <Route
+          path="/sobre-nos"
+          element={<SobreNosPage />}
+        />
+
+        <Route
+          path="/contato"
+          element={<ContatoPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

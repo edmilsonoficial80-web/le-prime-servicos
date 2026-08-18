@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpeg";
 
@@ -21,21 +22,22 @@ export default function Header() {
   return (
     <header
       style={{
-        background: "#061B41",
+        background: "#ffffff",
         minHeight: "75px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "10px 25px",
+        padding: "10px 30px",
         boxSizing: "border-box",
         gap: "20px",
         flexWrap: "wrap",
-
-        /* Linha divisória */
-        borderBottom: "1px solid rgba(255,255,255,0.25)",
+        borderBottom: "1px solid #e5e7eb",
+        boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
+        position: "relative",
+        zIndex: 100,
       }}
     >
-      {/* MARCA */}
+      {/* LOGO */}
       <div
         onClick={() => navigate("/")}
         style={{
@@ -49,23 +51,38 @@ export default function Header() {
           src={logo}
           alt="L&E Prime"
           style={{
-            height: "55px",
-            width: "55px",
+            height: "52px",
+            width: "52px",
             borderRadius: "10px",
             objectFit: "cover",
+            display: "block",
           }}
         />
 
-        <h2
-          style={{
-            color: "#fff",
-            margin: 0,
-            fontSize: "22px",
-            whiteSpace: "nowrap",
-          }}
-        >
-          L&E Prime
-        </h2>
+        <div>
+          <h2
+            style={{
+              color: "#061B41",
+              margin: 0,
+              fontSize: "21px",
+              fontWeight: "800",
+              lineHeight: "1",
+              whiteSpace: "nowrap",
+            }}
+          >
+            L&E Prime
+          </h2>
+
+          <span
+            style={{
+              color: "#6b7280",
+              fontSize: "11px",
+              fontWeight: "500",
+            }}
+          >
+            Serviços profissionais
+          </span>
+        </div>
       </div>
 
       {/* NAVEGAÇÃO */}
@@ -81,9 +98,9 @@ export default function Header() {
         <Link
           to="/"
           style={{
-            color: "#fff",
+            color: "#061B41",
             textDecoration: "none",
-            fontWeight: "500",
+            fontWeight: "600",
           }}
         >
           Início
@@ -92,9 +109,9 @@ export default function Header() {
         <Link
           to="/servicos"
           style={{
-            color: "#fff",
+            color: "#061B41",
             textDecoration: "none",
-            fontWeight: "500",
+            fontWeight: "600",
           }}
         >
           Serviços
@@ -103,19 +120,55 @@ export default function Header() {
         <Link
           to="/profissionais"
           style={{
-            color: "#fff",
+            color: "#061B41",
             textDecoration: "none",
-            fontWeight: "500",
+            fontWeight: "600",
           }}
         >
           Profissionais
+        </Link>
+
+        {/* COMO FUNCIONA */}
+        <Link
+          to="/como-funciona"
+          style={{
+            color: "#061B41",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          Como funciona
+        </Link>
+
+        {/* SOBRE NÓS */}
+        <Link
+          to="/sobre-nos"
+          style={{
+            color: "#061B41",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          Sobre nós
+        </Link>
+
+        {/* CONTATO */}
+        <Link
+          to="/contato"
+          style={{
+            color: "#061B41",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          Contato
         </Link>
 
         {admin && (
           <Link
             to="/admin"
             style={{
-              color: "#B8F000",
+              color: "#557000",
               textDecoration: "none",
               fontWeight: "bold",
             }}
@@ -126,10 +179,11 @@ export default function Header() {
 
         {logado ? (
           <button
+            type="button"
             onClick={sair}
             style={{
-              background: "#B8F000",
-              color: "#061B41",
+              background: "#061B41",
+              color: "#ffffff",
               border: "none",
               padding: "10px 18px",
               borderRadius: "8px",
@@ -144,9 +198,9 @@ export default function Header() {
             <Link
               to="/login"
               style={{
-                color: "#fff",
+                color: "#061B41",
                 textDecoration: "none",
-                fontWeight: "500",
+                fontWeight: "600",
               }}
             >
               Entrar
@@ -161,6 +215,7 @@ export default function Header() {
                 padding: "10px 18px",
                 borderRadius: "8px",
                 fontWeight: "bold",
+                boxShadow: "0 3px 8px rgba(0,0,0,0.12)",
               }}
             >
               Registrar
@@ -168,6 +223,22 @@ export default function Header() {
           </>
         )}
       </nav>
+
+      <style>
+        {`
+          @media (max-width: 900px) {
+            header {
+              padding: 10px 15px !important;
+              justify-content: center !important;
+            }
+
+            header nav {
+              width: 100%;
+              gap: 12px !important;
+            }
+          }
+        `}
+      </style>
     </header>
   );
 }

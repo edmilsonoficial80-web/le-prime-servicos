@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { cadastrarUsuario } from "../../data/usuariosStore";
 
@@ -17,26 +16,75 @@ function RegisterProfessionalPage() {
   });
 
   function alterar(campo: string, valor: string) {
-    setForm({
-      ...form,
+    setForm((anterior) => ({
+      ...anterior,
       [campo]: valor,
-    });
+    }));
   }
 
   function enviar(e: React.FormEvent) {
     e.preventDefault();
 
     cadastrarUsuario({
-  nome: form.nome,
-  email: form.email,
-  senha: form.senha,
-  especialidade: form.especialidade,
-  zona: form.zona,
-  descricao: form.descricao,
-  telefone: form.telefone,
-  whatsapp: form.whatsapp,
-  tipo: "profissional",
-} as any);
+      nome: form.nome,
+      email: form.email,
+      senha: form.senha,
+      especialidade: form.especialidade,
+      zona: form.zona,
+      descricao: form.descricao,
+      telefone: form.telefone,
+      whatsapp: form.whatsapp,
+      tipo: "profissional",
+    } as any);
+
+    const novoProfissional = {
+      id: Date.now(),
+      nome: form.nome,
+      email: form.email,
+      profissao: form.especialidade,
+      especialidade: form.especialidade,
+      cidade: form.zona,
+      zona: form.zona,
+      descricao: form.descricao,
+      telefone: form.telefone,
+      whatsapp: form.whatsapp,
+      tipo: "profissional",
+      foto: "",
+      aprovado: true,
+    };
+
+    let profissionais: any[] = [];
+
+    try {
+      const dadosExistentes = localStorage.getItem(
+        "leprime_profissionais"
+      );
+
+      if (dadosExistentes) {
+        const dados = JSON.parse(dadosExistentes);
+
+        if (Array.isArray(dados)) {
+          profissionais = dados;
+        }
+      }
+    } catch (erro) {
+      console.error(
+        "Erro ao ler profissionais existentes:",
+        erro
+      );
+    }
+
+    profissionais.push(novoProfissional);
+
+    localStorage.setItem(
+      "leprime_profissionais",
+      JSON.stringify(profissionais)
+    );
+
+    console.log(
+      "Profissional cadastrado:",
+      novoProfissional
+    );
 
     setCadastrado(true);
   }
@@ -82,6 +130,25 @@ function RegisterProfessionalPage() {
             <p>
               Agora você já pode entrar como profissional.
             </p>
+
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = "/profissionais";
+              }}
+              style={{
+                marginTop: "15px",
+                background: "#B8F000",
+                color: "#061B41",
+                border: "none",
+                padding: "12px 20px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Ver profissionais
+            </button>
           </>
         ) : (
           <form onSubmit={enviar}>
@@ -90,7 +157,6 @@ function RegisterProfessionalPage() {
             </h1>
 
             <label>Nome completo</label>
-
             <input
               placeholder="Seu nome"
               style={campo}
@@ -102,7 +168,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>Email</label>
-
             <input
               placeholder="Seu email"
               type="email"
@@ -115,7 +180,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>Senha</label>
-
             <input
               placeholder="Sua senha"
               type="password"
@@ -128,7 +192,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>Especialidade</label>
-
             <input
               placeholder="Ex: Eletricista"
               style={campo}
@@ -143,9 +206,8 @@ function RegisterProfessionalPage() {
             />
 
             <label>Zona de atendimento</label>
-
             <input
-              placeholder="Ex: Lisboa e arredores"
+              placeholder="Ex: Lisboa"
               style={campo}
               value={form.zona}
               onChange={(e) =>
@@ -155,7 +217,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>Telefone</label>
-
             <input
               placeholder="Seu telefone"
               type="tel"
@@ -167,7 +228,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>WhatsApp</label>
-
             <input
               placeholder="Seu WhatsApp"
               type="tel"
@@ -179,7 +239,6 @@ function RegisterProfessionalPage() {
             />
 
             <label>Sobre você</label>
-
             <textarea
               placeholder="Descreva sua experiência e os serviços que realiza"
               style={{

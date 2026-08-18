@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { buscarPedidos } from "../data/pedidosStore";
+import { useOpenRequests } from "@/hooks/useRequests";
+import { createProposal } from "@/services/proposalService";
+import { useAuth } from "@/hooks/useAuth";
 
 function PainelProfissional() {
+const { professional } = useAuth();
+
+  const { data: pedidosAbertos } = useOpenRequests();
+
   const usuarioAtual = JSON.parse(
     localStorage.getItem("usuarioLogado") || "{}"
   );
@@ -10,7 +17,7 @@ const [pedidos, setPedidos] = useState<any[]>(
   buscarPedidos()
 );
 
-const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({});
+const [valoresProposta, setValoresProposta] = useState<{[key:string]: string}>({});
 
   const [mostrarPerfil, setMostrarPerfil] =
     useState(false);
@@ -325,12 +332,7 @@ const [valoresProposta, setValoresProposta] = useState<{[key:number]: string}>({
   }
 
 
-  const novosPedidos =
-    pedidos.filter(
-      (pedido: any) =>
-        pedido.status ===
-        "Pendente"
-    );
+  const novosPedidos = pedidosAbertos ?? [];
 
 
   const meusServicos =
@@ -860,35 +862,49 @@ TESTE CAMPO PROPOSTA APARECEU
 
 <button
   type="button"
-  onClick={() => {
-    const valor = valoresProposta[pedido.id];
+  onClick={async () => {
+  const valorTexto = valoresProposta[pedido.id];
 
-    if (!valor) {
-      alert("Digite o valor da proposta");
-      return;
-    }
+  if (!valorTexto) {
+    alert("Digite o valor da proposta");
+    return;
+  }
 
-    const pedidosAtualizados = pedidos.map((p: any) =>
-      p.id === pedido.id
-        ? {
-            ...p,
-            valor: `${valor} €`,
-            status: "Em andamento",
-            profissional:
-              usuarioAtual.nome || "Profissional",
-            profissionalId:
-            String(usuarioAtual.id),
-          }
-        : p
-    );
+  const valor = Number(
+    valorTexto.replace(",", ".")
+  );
 
-    localStorage.setItem(
-      "pedidos",
-      JSON.stringify(pedidosAtualizados)
-    );
+  if (!Number.isFinite(valor) || valor <= 0) {
+    alert("Digite um valor válido para a proposta");
+    return;
+  }
 
-    setPedidos(pedidosAtualizados);
-  }}
+  if (!professional) {
+    alert("Não foi possível identificar o profissional.");
+    return;
+  }
+
+  try {
+    await createProposal({
+      request: pedido,
+      professional,
+      price: valor,
+      message: "Tenho interesse em realizar este serviço.",
+      estimatedDays: 1,
+    });
+
+    setValoresProposta((anterior) => {
+      const novo = { ...anterior };
+      delete novo[pedido.id];
+      return novo;
+    });
+
+    alert("Proposta enviada com sucesso! ✅");
+  } catch (erro) {
+    console.error("Erro ao enviar proposta:", erro);
+    alert("Não foi possível enviar a proposta.");
+  }
+}}
   style={{
     background: "#061B41",
     color: "white",
