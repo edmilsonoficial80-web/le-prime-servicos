@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import Header from "./components/Header";
 
@@ -27,81 +28,90 @@ import ContatoPage from "./pages/ContatoPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <HelmetProvider>
+      <Helmet>
+        {/* Configuração do Ícone e Aplicativo PWA */}
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#000000" />
+      </Helmet>
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <BrowserRouter>
+        <Header />
 
-        <Route path="/servicos" element={<ServicePage />} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/profissionais" element={<ProfissionaisPage />} />
+          <Route path="/servicos" element={<ServicePage />} />
 
-        <Route
-          path="/profissionais/:tipo"
-          element={<ProfissionaisPage />}
-        />
+          <Route path="/profissionais" element={<ProfissionaisPage />} />
 
-        <Route
-          path="/profissional/:id"
-          element={<PerfilProfissional />}
-        />
+          <Route
+            path="/profissionais/:tipo"
+            element={<ProfissionaisPage />}
+          />
 
-        <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/profissional/:id"
+            element={<PerfilProfissional />}
+          />
 
-        <Route path="/registro" element={<Registro />} />
+          <Route path="/login" element={<LoginPage />} />
 
-        <Route
-          path="/registro/cliente"
-          element={<RegisterClientPage />}
-        />
+          <Route path="/registro" element={<Registro />} />
 
-        <Route
-          path="/registro/profissional"
-          element={<RegisterProfessionalPage />}
-        />
+          <Route
+            path="/registro/cliente"
+            element={<RegisterClientPage />}
+          />
 
-        <Route path="/pedido" element={<PedidoPage />} />
+          <Route
+            path="/registro/profissional"
+            element={<RegisterProfessionalPage />}
+          />
 
-        <Route path="/novo-pedido" element={<NovoPedido />} />
+          <Route path="/pedido" element={<PedidoPage />} />
 
-        <Route
-          path="/painel-cliente"
-          element={<PainelCliente />}
-        />
+          <Route path="/novo-pedido" element={<NovoPedido />} />
 
-        <Route
-          path="/painel-profissional"
-          element={<PainelProfissional />}
-        />
+          <Route
+            path="/painel-cliente"
+            element={<PainelCliente />}
+          />
 
-        <Route
-          path="/painel-profissional/:id"
-          element={<PainelProfissional />}
-        />
+          <Route
+            path="/painel-profissional"
+            element={<PainelProfissional />}
+          />
 
-        <Route
-          path="/acesso-profissional"
-          element={<AcessoProfissional />}
-        />
+          <Route
+            path="/painel-profissional/:id"
+            element={<PainelProfissional />}
+          />
 
-        <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/acesso-profissional"
+            element={<AcessoProfissional />}
+          />
 
-        <Route
-          path="/como-funciona"
-          element={<ComoFuncionaPage />}
-        />
+          <Route path="/admin" element={<AdminPage />} />
 
-        <Route
-          path="/sobre-nos"
-          element={<SobreNosPage />}
-        />
+          <Route
+            path="/como-funciona"
+            element={<ComoFuncionaPage />}
+          />
 
-        <Route
-          path="/contato"
-          element={<ContatoPage />}
-        />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/sobre-nos"
+            element={<SobreNosPage />}
+          />
+
+          <Route
+            path="/contato"
+            element={<ContatoPage />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
